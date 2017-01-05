@@ -1,6 +1,6 @@
-class CreateTableSpreeSharedlists < ActiveRecord::Migration
+class CreateSpreeSharedlists < ActiveRecord::Migration
   def change
-    create_table :table_spree_sharedlists do |t|
+    create_table :spree_sharedlists do |t|
       t.references :user
       t.string :name
       t.string :access_hash

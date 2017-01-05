@@ -1,6 +1,6 @@
-class CreateTableSpreeSharedProducts < ActiveRecord::Migration
+class CreateSpreeSharedProducts < ActiveRecord::Migration
   def change
-    create_table :table_spree_shared_products do |t|
+    create_table :spree_shared_products do |t|
       t.references :variant
       t.references :wishlist
       t.text :remark
