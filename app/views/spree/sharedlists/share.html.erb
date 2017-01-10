@@ -1,0 +1,23 @@
+<h1><%= Spree.t(:tell_about, scope: :share_with_friend, product: @sharedlist.name) %></h1>
+
+<%= form_tag(send_email_sharedlist_path(@sharedlist)) do -%>
+  <%#= render 'spree/shared/error_messages', target: @mail_to_friend %>
+  <p>
+    <%= label(:sender_name, Spree.t(:sender_name, scope: :share_with_friend)) %><br/>
+    <%= text_field_tag (:sender_name) %>
+  </p>
+
+  <p>
+    <%= label(:recipient_name, Spree.t(:recipient_name, scope: :share_with_friend)) %><br/>
+    <%= text_field_tag (:recipient_name) %>
+  </p>
+
+  <p>
+    <%= label(:recipient_email, Spree.t(:recipient_email, scope: :share_with_friend)) %><br/>
+    <%= text_field_tag (:recipient_email) %>
+  </p>
+
+  <p>
+    <%= submit_tag Spree.t(:send_mail, scope: :share_with_friend) %>
+  </p>
+<% end -%>

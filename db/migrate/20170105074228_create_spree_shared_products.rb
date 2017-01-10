@@ -2,7 +2,7 @@ class CreateSpreeSharedProducts < ActiveRecord::Migration
   def change
     create_table :spree_shared_products do |t|
       t.references :variant
-      t.references :wishlist
+      t.references :sharedlist
       t.text :remark
       t.integer :quantity, null: false, default: 1
 

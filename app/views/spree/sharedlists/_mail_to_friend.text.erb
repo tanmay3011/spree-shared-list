@@ -1,0 +1,14 @@
+<%= mail.recipient_name %>,
+
+<%= 'Take a look at my sharedlist' || Spree.t(:take_a_look_at_my_sharedlist) %>
+
+  * <%= object.name %>
+
+<% unless mail.message.blank? -%>
+<%= mail.message %>
+<% end -%>
+
+<%= mail.sender_name %>
+
+<%= Spree.t(:click_link_to_view_sharedlist, name: object.name) %>
+<%= sharedlist_url(object) %>

@@ -1,4 +1,4 @@
-module SpreeSharedList
+module SpreeSharedlist
   module Generators
     class InstallGenerator < Rails::Generators::Base
 

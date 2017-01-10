@@ -1,0 +1,98 @@
+<div id="wishlist_header">
+  <h1><%= @sharedlist.name %></h1>
+  <% if @sharedlist.user == spree_current_user %>
+    <div id="manage_wishlist_links">
+    <!-- TODO : Translate -->
+      <%= link_to Spree.t(:edit_sharedlist), edit_sharedlist_path(@sharedlist), class: 'button' %>
+    </div>
+  <% end -%>
+</div>
+<table id="wishlist" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th><%= Spree.t(:item_view) %></th>
+      <th><%= Spree.t(:item_description) %></th>
+      <th><%= Spree.t(:availability) %></th>
+      <th><%= Spree.t(:date_added) %></th>
+      <th><%= Spree.t(:price) %></th>
+      <th><%= Spree.t(:quantity) %></th>
+      <th><%= Spree.t(:total) %></th>
+      <% if @sharedlist.user == spree_current_user %>
+        <!-- TODO : Translate-->
+        <th><%= 'Sharedlist Actions' || Spree.t(:sharedlist_actions) %></th>
+      <% end -%>
+    </tr>
+  </thead>
+  <tbody id="line_items">
+  <% if @sharedlist.shared_products.size > 0 %>
+    <% @sharedlist.shared_products.each do |shared_product|
+        variant = shared_product.variant
+        product = variant.product %>
+    <tr class="<%= cycle('', 'alt') %>">
+      <td>
+        <% if variant.images.length == 0 %>
+          <%= small_image(variant.product) %>
+        <% else %>
+          <%= image_tag variant.images.first.attachment.url(:small) %>
+        <% end %>
+      </td>
+      <td>
+        <h4><%= link_to product.name, product %></h4>
+        <p><%= variant_options variant %></p>
+        <%= truncate(strip_tags(product.description), length: 100, omission: '...') %>
+      </td>
+      <td>
+        <%= variant.can_supply? ? Spree.t(:in_stock) : Spree.t(:out_of_stock) %>
+      </td>
+      <td>
+        <%= shared_product.created_at.strftime '%m/%d/%Y' %>
+      </td>
+      <td>
+        <%= display_price(variant) %>
+      </td>
+      <td>
+        <%= form_for shared_product do |f| %>
+          <%= f.number_field :quantity, class: 'sml-input-field' %>
+          <%= f.submit Spree.t(:save, scope: :actions), class: 'btn btn-info '  %>
+        <% end %>
+      </td>
+      <td>
+        <%= shared_product.display_total %>
+      </td>
+    <% if @sharedlist.user == spree_current_user %>
+      <td>
+        <p><%= link_to Spree.t(:remove_from_sharedlist), shared_product, method: :delete, class: 'btn btn-danger' %></p>
+        <%= form_for :order, url: populate_orders_url do |f| %>
+          <%= hidden_field_tag 'variant_id', variant.id, size: 3 %>
+          <%= Spree.t(:quantity) %>
+          <%= number_field_tag 'quantity', shared_product.quantity, size: 3, class: 'sml-input-field' %>
+          <%= link_to Spree.t(:add_to_cart), '#', onclick: '$(this).parent().submit(); return false;', class: 'btn btn-success' %>
+        <% end %>
+        <% if spree_current_user.sharedlists.count > 1 %>
+          <%= Spree.t(:move_to_another_sharedlist) %>:
+          <%= form_for shared_product do |f| %>
+            <%= f.select :sharedlist_id, spree_current_user.sharedlists.map{|wl| [wl.name, wl.id]} %>
+            <%= f.submit Spree.t(:move), class: 'btn btn-default' %>
+          <% end %>
+        <% end %>
+        <br />
+      </td>
+    <% end -%>
+    </tr>
+    <% end -%>
+  <% else -%>
+    <tr>
+      <td colspan="6"><%= Spree.t(:your_sharedlist_is_empty) %></td>
+    </tr>
+  <% end -%>
+  </tbody>
+</table>
+<div class="footer_links" data-hook="wishlist_footer_links">
+<% if @sharedlist.user == spree_current_user %>
+  <%= link_to Spree.t(:create_new_sharedlist), new_sharedlist_path, class: 'btn btn-default' %>
+<% end -%>
+<%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default' %>
+<% if respond_to?(:email_to_friend_url) %>
+  <%= link_to Spree.t(:tell_about, scope: :share_with_friend), share_sharedlist_path(@sharedlist), class: 'btn btn-default' %>
+<% end %>
+</div>

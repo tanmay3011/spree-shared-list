@@ -1,0 +1,5 @@
+<h1><%= Spree.t(:creating_sharedlist) %></h1>
+<%= form_for @sharedlist do |f| %>
+  <p><%= f.label :name, Spree.t(:name) %>:&nbsp;<%= f.text_field :name %></p>
+  <%= f.submit Spree.t(:create) %>
+<% end -%>

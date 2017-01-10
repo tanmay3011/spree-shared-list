@@ -1,4 +1,4 @@
-module SpreeSharedList
+module SpreeSharedlist
   class Engine < Rails::Engine
     require 'spree/core'
     isolate_namespace Spree

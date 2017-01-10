@@ -1,0 +1,12 @@
+
+Dear <%= @recipient_name %>
+<br/>
+
+<%= @sender_name %> has shared a sharedlist with you.
+<br/>
+
+<%= Spree.t(:click_to_view_sharedlist, scope: :share_with_friend) %>
+<br/>
+
+<%= link_to 'View sharedlist', sharedlist_url(@sharedlist) %>
+

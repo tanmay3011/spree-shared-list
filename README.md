@@ -1,4 +1,4 @@
-SpreeSharedList
+SpreeSharedlist
 ===============
 
 Introduction goes here.
