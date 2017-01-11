@@ -22,7 +22,12 @@ class Spree::Sharedlist < ActiveRecord::Base
     name_changed? || super
   end
 
-  def share_with(opts)
+  def checkout(order)
+    errors = ''
+    shared_products.each do |sp|
+      errors += sp.checkout(order)
+    end
+    errors
   end
 
 end

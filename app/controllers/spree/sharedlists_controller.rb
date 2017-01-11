@@ -61,14 +61,7 @@ class Spree::SharedlistsController < Spree::StoreController
   end
 
   def checkout
-    errors = ''
-    @sharedlist.shared_products.each do |sp|
-      begin
-        @order.contents.add(sp.variant, sp.quantity)
-      rescue ActiveRecord::RecordInvalid => e
-        errors += e.record.errors.full_messages.join(", ")
-      end
-    end
+    errors = @sharedlist.checkout(@order)
     if errors.empty?
       flash[:success] = Spree.t(:success)
       redirect_to cart_path
