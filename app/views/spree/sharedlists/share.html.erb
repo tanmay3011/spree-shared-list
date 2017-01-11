@@ -1,4 +1,4 @@
-<h1><%= Spree.t(:tell_about, scope: :share_with_friend, product: @sharedlist.name) %></h1>
+<h1><%= Spree.t(:tell_about, scope: :share_with_friend) %></h1>
 
 <%= form_tag(send_email_sharedlist_path(@sharedlist)) do -%>
   <%#= render 'spree/shared/error_messages', target: @mail_to_friend %>

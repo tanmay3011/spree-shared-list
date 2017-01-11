@@ -13,9 +13,9 @@ class Spree::SharedlistAbility
 
     user ||= Spree.user_class.new
 
-    # if user.respond_to?(:has_spree_role?) && user.has_spree_role?('admin')
-      # can :manage, :all
-    # else
+    if user.respond_to?(:has_spree_role?) && user.has_spree_role?('admin')
+      can :manage, :all
+    else
       can :modify, Sharedlist, user_id: user.id
       can :display, Sharedlist
     end

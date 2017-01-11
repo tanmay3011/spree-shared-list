@@ -28,6 +28,7 @@ en:
     shared_product_not_found: 'Product not found'
     share_sharedlist_mail_subject: 'A sharedlist has been shared with you'
     add_sharedlist_to_cart: 'Add sharedlist to cart'
+    sharedlist_shared_with_user: 'List already shared with the user'
     share_with_friend:
       subject: 'Invitation to view sharedlist'
       sender_name: 'Sender Name'
