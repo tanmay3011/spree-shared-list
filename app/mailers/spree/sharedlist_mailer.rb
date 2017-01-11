@@ -10,7 +10,7 @@ class Spree::SharedlistMailer < ActionMailer::Base
 
     opts = {}
     opts[:to] = recipient_mail
-    opts[:subject] =  Spree.t(:shared_sharedlist_mail_subject)
+    opts[:subject] =  Spree.t(:subject, scope: :share_with_friend)
     opts[:from] = sender_email
 
     mail(opts)
