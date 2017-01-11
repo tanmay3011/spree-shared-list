@@ -1,5 +1,4 @@
 
-en:
   spree:
     add_to_sharedlist: "Add to sharedlist"
     are_you_sure_sharedlist: "Are you sure that you want to delete this sharedlist?"
@@ -28,7 +27,7 @@ en:
     shared_product_not_found: 'Product not found'
     share_sharedlist_mail_subject: 'A sharedlist has been shared with you'
     add_sharedlist_to_cart: 'Add sharedlist to cart'
-    sharedlist_shared_with_user: 'List already shared with the user'
+    sharedlist_already_shared_with_user: 'already has access to this sharedlist'
     sharedlists_shared_with_me: 'Sharedlists shared with me'
     share_with_friend:
       subject: 'Invitation to view sharedlist'

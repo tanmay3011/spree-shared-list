@@ -57,6 +57,9 @@ class Spree::SharedlistsController < Spree::StoreController
     if @shared_with_user.save
       flash[:success] = Spree.t(:success)
       redirect_to sharedlist_path(@sharedlist)
+    else
+      flash[:error] = @shared_with_user.errors.full_messages.join(', ')
+      redirect_to share_sharedlist_path(@sharedlist)
     end
   end
 

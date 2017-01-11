@@ -48,7 +48,6 @@
         <%= display_price(variant) %>
       </td>
       <td>
-         <!-- FIXME Temp measure as getting error spree_roles_users doesn't exist  -->
         <% if @sharedlist.user == spree_current_user %>
           <%= form_for shared_product do |f| %>
             <%= f.number_field :quantity, class: 'sml-input-field' %>
