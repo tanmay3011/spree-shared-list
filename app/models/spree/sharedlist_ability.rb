@@ -18,8 +18,6 @@ class Spree::SharedlistAbility
     # else
       can :modify, Sharedlist, user_id: user.id
       can :display, Sharedlist
-
-      cannot :modify, Sharedlist
     end
 
   end

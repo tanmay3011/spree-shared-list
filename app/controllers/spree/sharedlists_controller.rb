@@ -1,8 +1,9 @@
 class Spree::SharedlistsController < Spree::StoreController
   helper 'spree/products'
 
-  before_action :load_sharedlist, only: [:show, :edit, :update, :destroy, :share, :send_email]
+  before_action :load_sharedlist, only: [:show, :edit, :update, :destroy, :share, :send_email, :checkout]
   before_action :load_recipient, only: [:send_email]
+  before_action :load_order, only: [:checkout]
 
   respond_to :html
   respond_to :js, only: :update
@@ -57,10 +58,24 @@ class Spree::SharedlistsController < Spree::StoreController
       flash[:success] = Spree.t(:success)
       redirect_to sharedlist_path(@sharedlist)
     end
-    # respond_with(@shared_with_user)
   end
 
   def checkout
+    errors = ''
+    @sharedlist.shared_products.each do |sp|
+      begin
+        @order.contents.add(sp.variant, sp.quantity)
+      rescue ActiveRecord::RecordInvalid => e
+        errors += e.record.errors.full_messages.join(", ")
+      end
+    end
+    if errors.empty?
+      flash[:success] = Spree.t(:success)
+      redirect_to cart_path
+    else
+      flash[:error] = errors
+      redirect_to @sharedlist
+    end
   end
 
   private
@@ -83,5 +98,9 @@ class Spree::SharedlistsController < Spree::StoreController
       flash[:error] = Spree.t(:recipient_not_found)
       redirect_to :back
     end
+  end
+
+  def load_order
+    @order = current_order(create_order_if_necessary: true)
   end
 end
