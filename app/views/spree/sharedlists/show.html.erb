@@ -51,9 +51,14 @@
         <%= display_price(variant) %>
       </td>
       <td>
-        <%= form_for shared_product do |f| %>
-          <%= f.number_field :quantity, class: 'sml-input-field' %>
-          <%= f.submit Spree.t(:save, scope: :actions), class: 'btn btn-info '  %>
+         <!-- FIXME Temp measure as getting error spree_roles_users doesn't exist  -->
+        <% if true || can?(:modify, @sharedlist) %>
+          <%= form_for shared_product do |f| %>
+            <%= f.number_field :quantity, class: 'sml-input-field' %>
+            <%= f.submit Spree.t(:save, scope: :actions), class: 'btn btn-info '  %>
+          <% end %>
+        <% else %>
+          <%= shared_product.quantity %>
         <% end %>
       </td>
       <td>
@@ -62,12 +67,9 @@
     <% if @sharedlist.user == spree_current_user %>
       <td>
         <p><%= link_to Spree.t(:remove_from_sharedlist), shared_product, method: :delete, class: 'btn btn-danger' %></p>
-        <%= form_for :order, url: populate_orders_url do |f| %>
-          <%= hidden_field_tag 'variant_id', variant.id, size: 3 %>
-          <%= Spree.t(:quantity) %>
-          <%= number_field_tag 'quantity', shared_product.quantity, size: 3, class: 'sml-input-field' %>
-          <%= link_to Spree.t(:add_to_cart), '#', onclick: '$(this).parent().submit(); return false;', class: 'btn btn-success' %>
-        <% end %>
+
+        <%= link_to Spree.t(:add_to_cart), populate_orders_url(variant_id: variant.id, quantity: shared_product.quantity), method: :post, class: 'btn btn-success' %>
+
         <% if spree_current_user.sharedlists.count > 1 %>
           <%= Spree.t(:move_to_another_sharedlist) %>:
           <%= form_for shared_product do |f| %>
@@ -92,7 +94,6 @@
   <%= link_to Spree.t(:create_new_sharedlist), new_sharedlist_path, class: 'btn btn-default' %>
 <% end -%>
 <%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default' %>
-<% if respond_to?(:email_to_friend_url) %>
-  <%= link_to Spree.t(:tell_about, scope: :share_with_friend), share_sharedlist_path(@sharedlist), class: 'btn btn-default' %>
-<% end %>
+<%= link_to Spree.t(:tell_about, scope: :share_with_friend), share_sharedlist_path(@sharedlist), class: 'btn btn-default' %>
+<%= link_to Spree.t(:add_sharedlist_to_cart), checkout_sharedlist_path(@sharedlist), method: :post, class: 'btn btn-success' %>
 </div>

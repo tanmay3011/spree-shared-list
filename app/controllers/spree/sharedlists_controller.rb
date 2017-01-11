@@ -60,6 +60,9 @@ class Spree::SharedlistsController < Spree::StoreController
     # respond_with(@shared_with_user)
   end
 
+  def checkout
+  end
+
   private
 
   def sharedlist_attributes
