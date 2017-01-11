@@ -17,10 +17,7 @@
       <th><%= Spree.t(:price) %></th>
       <th><%= Spree.t(:quantity) %></th>
       <th><%= Spree.t(:total) %></th>
-      <% if @sharedlist.user == spree_current_user %>
-        <!-- TODO : Translate-->
-        <th><%= 'Sharedlist Actions' || Spree.t(:sharedlist_actions) %></th>
-      <% end -%>
+      <th><%= Spree.t(:sharedlist_actions) %></th>
     </tr>
   </thead>
   <tbody id="line_items">
@@ -64,22 +61,21 @@
       <td>
         <%= shared_product.display_total %>
       </td>
-    <% if @sharedlist.user == spree_current_user %>
       <td>
+        <% if @sharedlist.user == spree_current_user %>
         <p><%= link_to Spree.t(:remove_from_sharedlist), shared_product, method: :delete, class: 'btn btn-danger' %></p>
-
-        <%= link_to Spree.t(:add_to_cart), populate_orders_url(variant_id: variant.id, quantity: shared_product.quantity), method: :post, class: 'btn btn-success' %>
-
-        <% if spree_current_user.sharedlists.count > 1 %>
-          <%= Spree.t(:move_to_another_sharedlist) %>:
-          <%= form_for shared_product do |f| %>
-            <%= f.select :sharedlist_id, spree_current_user.sharedlists.map{|wl| [wl.name, wl.id]} %>
-            <%= f.submit Spree.t(:move), class: 'btn btn-default' %>
+        <p>
+          <% if spree_current_user.sharedlists.count > 1 %>
+            <%= Spree.t(:move_to_another_sharedlist) %>:
+            <%= form_for shared_product do |f| %>
+              <%= f.select :sharedlist_id, spree_current_user.sharedlists.map{|wl| [wl.name, wl.id]} %>
+              <%= f.submit Spree.t(:move), class: 'btn btn-default' %>
+            <% end %>
           <% end %>
-        <% end %>
-        <br />
+        </p>
+        <% end -%>
+        <p><%= link_to Spree.t(:add_to_cart), populate_orders_url(variant_id: variant.id, quantity: shared_product.quantity), method: :post, class: 'btn btn-success' %></p>
       </td>
-    <% end -%>
     </tr>
     <% end -%>
   <% else -%>
