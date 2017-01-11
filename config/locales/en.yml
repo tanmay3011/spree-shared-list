@@ -29,6 +29,7 @@ en:
     share_sharedlist_mail_subject: 'A sharedlist has been shared with you'
     add_sharedlist_to_cart: 'Add sharedlist to cart'
     sharedlist_shared_with_user: 'List already shared with the user'
+    sharedlists_shared_with_me: 'Sharedlists shared with me'
     share_with_friend:
       subject: 'Invitation to view sharedlist'
       sender_name: 'Sender Name'

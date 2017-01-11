@@ -1,8 +1,13 @@
 <h3><%= Spree.t(:my_sharedlists) %></h3>
 <ul>
 <% @user.sharedlists.each do |sl| %>
-  <% if @user == spree_current_user %>
   <li><%= link_to sl.name, sl %></li>
-  <% end -%>
+<% end -%>
+</ul>
+
+<h3><%= Spree.t(:sharedlists_shared_with_me) %></h3>
+<ul>
+<% @user.shared_sharedlists.each do |sl| %>
+  <li><%= link_to sl.name, sl %></li>
 <% end -%>
 </ul>
