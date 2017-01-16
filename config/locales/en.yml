@@ -19,7 +19,6 @@ en:
     your_sharedlist_is_empty: "Your sharedlist is empty"
     item_added_to_sharedlist: "Item added to sharedlist"
     take_a_look_at_my_sharedlist: "Please, take a look at my sharedlist:"
-    click_link_to_view_sharedlist: "Click the link below to view the %{name} page."
     quantity: "Quantity"
     total: "Total"
     recipient_not_found: 'No user exists with the given email id'
@@ -29,6 +28,7 @@ en:
     add_sharedlist_to_cart: 'Add sharedlist to cart'
     sharedlist_already_shared_with_user: 'already has access to this sharedlist'
     sharedlists_shared_with_me: 'Sharedlists shared with me'
+    view_sharedlist: 'View sharedlist'
     share_with_friend:
       subject: 'Invitation to view sharedlist'
       sender_name: 'Sender Name'

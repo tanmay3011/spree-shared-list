@@ -1,7 +1,7 @@
 SpreeSharedlist
 ===============
 
-Introduction goes here.
+This extension provides the user with the ability to create multiple sharedlists. A user can add multiple products to the list for reference purposes and then check them out, either individually or the whole list at once, at his leisure. He can also share this list with his friends via email.
 
 ## Installation
 

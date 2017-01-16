@@ -89,6 +89,8 @@
   <%= link_to Spree.t(:create_new_sharedlist), new_sharedlist_path, class: 'btn btn-default' %>
 <% end -%>
 <%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default' %>
-<%= link_to Spree.t(:tell_about, scope: :share_with_friend), share_sharedlist_path(@sharedlist), class: 'btn btn-default' %>
+<% if @sharedlist.user == spree_current_user %>
+  <%= link_to Spree.t(:tell_about, scope: :share_with_friend), share_sharedlist_path(@sharedlist), class: 'btn btn-default' %>
+<% end %>
 <%= link_to Spree.t(:add_sharedlist_to_cart), checkout_sharedlist_path(@sharedlist), method: :post, class: 'btn btn-success' %>
 </div>
