@@ -1,0 +1,17 @@
+require 'spec_helper'
+
+RSpec.describe Spree::Sharedlist, type: :model do
+
+  describe 'Associations' do
+    it { is_expected.to belong_to(:variant) }
+    it { is_expected.to belong_to(:sharedlist) }
+  end
+
+  describe '#quantity' do
+    subject { build(:wished_product) }
+
+    it { is_expected.to respond_to(:quantity) }
+    it { expect(subject.quantity).to eq(1) }
+  end
+
+end

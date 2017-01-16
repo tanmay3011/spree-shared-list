@@ -38,7 +38,7 @@ class Spree::SharedProductsController < Spree::StoreController
   private
 
   def shared_product_attributes
-    params.require(:shared_product).permit(:variant_id, :sharedlist_id, :remark, :quantity)
+    params.require(:shared_product).permit(:variant_id, :sharedlist_id, :quantity)
   end
 
   def load_sharedlist
