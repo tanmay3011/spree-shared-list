@@ -9,6 +9,6 @@ class Spree::SharedWithUser < ActiveRecord::Base
   private
 
   def send_mail_to_recipient
-    Spree::SharedlistMailer.share(self).deliver_now
+    Spree::SharedlistMailer.share(self).deliver
   end
 end

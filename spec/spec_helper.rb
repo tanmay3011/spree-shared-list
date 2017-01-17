@@ -19,7 +19,7 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
 require 'shoulda/matchers'
-require 'rspec/active_model/mocks'
+require 'shoulda-callback-matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -32,8 +32,8 @@ require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
 
-# Requires factories defined in lib/spree_events_tracker/factories.rb
-require 'spree_events_tracker/factories'
+# Requires factories defined in lib/spree_sharedlist/factories.rb
+require 'spree_sharedlist/factories'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -93,5 +93,8 @@ RSpec.configure do |config|
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = "random"
   config.include Spree::TestingSupport::ControllerRequests, type: :controller
+  config.include(Shoulda::Callback::Matchers::ActiveModel)
   config.infer_spec_type_from_file_location!
 end
+
+

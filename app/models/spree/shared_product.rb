@@ -11,7 +11,7 @@ class Spree::SharedProduct < ActiveRecord::Base
     Spree::Money.new(amount)
   end
 
-  def checkout(order)
+  def add_to_current_order(order)
     errors = ''
     begin
       order.contents.add(variant, quantity)

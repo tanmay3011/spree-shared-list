@@ -1,6 +1,20 @@
 FactoryGirl.define do
-  # Define your Spree extensions Factories within this file to enable applications, and other extensions to use and override them.
-  #
-  # Example adding this to your spec_helper will load these Factories for use:
-  # require 'spree_sharedlist/factories'
+
+  factory :shared_product, class: Spree::SharedProduct do
+    variant
+    sharedlist
+    quantity 1
+  end
+
+  factory :sharedlist, class: Spree::Sharedlist do
+    user
+    sequence(:name) { |n| "Sharedlist_#{n}" }
+  end
+
+  factory :shared_with_user, class: Spree::SharedWithUser do
+    user
+    sharedlist
+  end
+
 end
+

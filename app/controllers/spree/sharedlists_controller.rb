@@ -55,7 +55,6 @@ class Spree::SharedlistsController < Spree::StoreController
     @shared_with_user.sender_name = params[:sender_name]
     @shared_with_user.recipient_name = params[:recipient_name]
     if @shared_with_user.save
-      flash[:success] = Spree.t(:success)
       redirect_to sharedlist_path(@sharedlist)
     else
       flash[:error] = @shared_with_user.errors.full_messages.join(', ')
@@ -66,7 +65,6 @@ class Spree::SharedlistsController < Spree::StoreController
   def checkout
     errors = @sharedlist.checkout(@order)
     if errors.empty?
-      flash[:success] = Spree.t(:success)
       redirect_to cart_path
     else
       flash[:error] = errors
@@ -92,7 +90,7 @@ class Spree::SharedlistsController < Spree::StoreController
     @recipient = Spree.user_class.find_by(email: params[:recipient_email])
     unless @recipient
       flash[:error] = Spree.t(:recipient_not_found)
-      redirect_to :back
+      redirect_to share_sharedlist_path(@sharedlist)
     end
   end
 

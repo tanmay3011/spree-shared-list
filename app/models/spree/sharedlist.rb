@@ -11,7 +11,7 @@ class Spree::Sharedlist < ActiveRecord::Base
   validates :name, presence: true
 
   def include?(variant_id)
-    !!shared_products.select { |sp| sp.variant_id == variant_id.to_i }
+    shared_products.select { |sp| sp.variant_id == variant_id.to_i }.any?
   end
 
   ## FIXME Confirm this
@@ -22,7 +22,7 @@ class Spree::Sharedlist < ActiveRecord::Base
   def checkout(order)
     errors = ''
     shared_products.each do |sp|
-      errors += sp.checkout(order)
+      errors += sp.add_to_current_order(order)
     end
     errors
   end
