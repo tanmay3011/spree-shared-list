@@ -17,7 +17,7 @@ class Spree::SharedProductAbility
         can :manage, :all
       else
         can :modify, SharedProduct do |sp|
-          sp.sharedlist.user_id == user.id
+          sp.shared_list.user_id == user.id
         end
         can :display, SharedProduct
       end

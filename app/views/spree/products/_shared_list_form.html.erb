@@ -1,11 +1,11 @@
 <% if spree_current_user %>
-  <div id="sharedlist-form">
+  <div id="shared_list-form">
     <%= form_for Spree::SharedProduct.new do |f| %>
       <%= f.hidden_field :variant_id, value: @product.master.id %>
       <%= f.hidden_field :quantity %>
-      <%= f.select :sharedlist_id, spree_current_user.sharedlists.map { |l| [l.name, l.id] }, include_blank: true %>
+      <%= f.select :shared_list_id, spree_current_user.shared_lists.map { |l| [l.name, l.id] }, include_blank: true %>
       <button type="submit" class="btn btn-info">
-        <%= Spree.t(:add_to_sharedlist) %>
+        <%= Spree.t(:add_to_shared_list) %>
       </button>
     <% end %>
   </div>

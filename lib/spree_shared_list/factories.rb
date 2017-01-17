@@ -2,18 +2,18 @@ FactoryGirl.define do
 
   factory :shared_product, class: Spree::SharedProduct do
     variant
-    sharedlist
+    shared_list
     quantity 1
   end
 
-  factory :sharedlist, class: Spree::Sharedlist do
+  factory :shared_list, class: Spree::SharedList do
     user
-    sequence(:name) { |n| "Sharedlist_#{n}" }
+    sequence(:name) { |n| "Shared_list_#{n}" }
   end
 
   factory :shared_with_user, class: Spree::SharedWithUser do
     user
-    sharedlist
+    shared_list
   end
 
 end

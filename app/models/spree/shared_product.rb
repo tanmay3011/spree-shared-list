@@ -1,6 +1,6 @@
 class Spree::SharedProduct < ActiveRecord::Base
   belongs_to :variant
-  belongs_to :sharedlist
+  belongs_to :shared_list
 
   def amount
     ## FIXME_NISH Rename it to amount.

@@ -1,0 +1,10 @@
+<h1 class="row"><%= Spree.t(:my_shared_lists) %></h1>
+<%= content_tag :ul do %>
+  <% @shared_lists.each do |shared_list| %>
+    <%= content_tag :li do %>
+      <%= link_to(shared_list.name, shared_list) %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= link_to Spree.t(:create_new_shared_list), new_shared_list_path, class: 'btn btn-default' %>

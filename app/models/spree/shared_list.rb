@@ -1,4 +1,4 @@
-class Spree::Sharedlist < ActiveRecord::Base
+class Spree::SharedList < ActiveRecord::Base
   belongs_to :user, class_name: Spree.user_class
   has_many :shared_products, dependent: :destroy
   has_many :shared_with_user, dependent: :destroy

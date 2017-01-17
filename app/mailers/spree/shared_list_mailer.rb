@@ -1,8 +1,8 @@
-class Spree::SharedlistMailer < ActionMailer::Base
+class Spree::SharedListMailer < ActionMailer::Base
 
   def share(object)
-    @sharedlist = object.sharedlist
-    @sender = @sharedlist.user
+    @shared_list = object.shared_list
+    @sender = @shared_list.user
     @sender_name = object.sender_name
     @recipient_name = object.recipient_name
     sender_email = @sender.email

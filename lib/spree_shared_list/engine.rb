@@ -1,8 +1,8 @@
-module SpreeSharedlist
+module SpreeSharedList
   class Engine < Rails::Engine
     require 'spree/core'
     isolate_namespace Spree
-    engine_name 'spree_sharedlist'
+    engine_name 'spree_shared_list'
 
     # use rspec for tests
     config.generators do |g|

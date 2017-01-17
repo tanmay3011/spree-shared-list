@@ -1,4 +1,4 @@
-class Spree::SharedlistAbility
+class Spree::SharedListAbility
   include CanCan::Ability
 
   def initialize(user)
@@ -16,12 +16,12 @@ class Spree::SharedlistAbility
     if user.respond_to?(:has_spree_role?) && user.has_spree_role?('admin')
       can :manage, :all
     else
-      can :modify, Sharedlist, user_id: user.id
-      can :display, Sharedlist
+      can :modify, SharedList, user_id: user.id
+      can :display, SharedList
     end
 
   end
 
 end
 
-Spree::Ability.register_ability(Spree::SharedlistAbility)
+Spree::Ability.register_ability(Spree::SharedListAbility)

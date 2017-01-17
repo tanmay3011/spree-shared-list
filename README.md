@@ -1,13 +1,13 @@
-SpreeSharedlist
+SpreeSharedList
 ===============
 
-This extension provides the user with the ability to create multiple sharedlists. A user can add multiple products to the list for reference purposes and then check them out, either individually or the whole list at once, at his leisure. He can also share this list with his friends via email.
+This extension provides the user with the ability to create multiple shared lists. A user can add multiple products to the list for reference purposes and then check them out, either individually or the whole list at once, at his leisure. He can also share this list with his friends via email.
 
 ## Installation
 
 1. Add this extension to your Gemfile with this line:
   ```ruby
-  gem 'spree_sharedlist', github: '[your-github-handle]/spree_sharedlist', branch: 'X-X-stable'
+  gem 'spree_shared_list', github: '[your-github-handle]/spree-shared-list', branch: 'X-X-stable'
   ```
 
   The `branch` option is important: it must match the version of Spree you're using.
@@ -20,7 +20,7 @@ This extension provides the user with the ability to create multiple sharedlists
 
 3. Copy & run migrations
   ```ruby
-  bundle exec rails g spree_sharedlist:install
+  bundle exec rails g spree_shared_list:install
   ```
 
 4. Restart your server
@@ -40,7 +40,7 @@ When testing your applications integration with this extension you may use it's 
 Simply add this require statement to your spec_helper:
 
 ```ruby
-require 'spree_sharedlist/factories'
+require 'spree-shared-list/factories'
 ```
 
 

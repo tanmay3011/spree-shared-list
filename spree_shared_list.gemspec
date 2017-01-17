@@ -1,16 +1,16 @@
 # encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_sharedlist'
+  s.name        = 'spree_shared_list'
   s.version     = '3.1.3'
-  s.summary     = 'Add gem summary here'
-  s.description = 'Add (optional) gem description here'
+  s.summary     = 'Spree Shared List'
+  s.description = 'Spree Shared List extension'
   s.required_ruby_version = '>= 2.1.0'
 
   s.author    = ['Akshat']
   # s.email     = 'you@example.com'
   # s.homepage  = 'http://www.spreecommerce.com'
-  s.license = 'BSD-3'
+  # s.license = 'BSD-3'
 
   # s.files       = `git ls-files`.split("\n")
   # s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")

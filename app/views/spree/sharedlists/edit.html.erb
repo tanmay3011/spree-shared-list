@@ -1,7 +1,0 @@
-<h1 class="row"><%= Spree.t(:editing_sharedlist) %></h1>
-<%= form_for @sharedlist do |f| %>
-  <p><%= f.label :name, Spree.t(:name) %>:&nbsp;<%= f.text_field :name %></p>
-  <%= f.submit Spree.t(:update) %>
-  <%= Spree.t(:or) %>
-  <%= link_to Spree.t(:delete_sharedlist), @sharedlist, method: :delete, data: { confirm: Spree.t(:are_you_sure_sharedlist) }, class: 'button' %>
-<% end -%>

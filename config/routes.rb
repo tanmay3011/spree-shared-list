@@ -1,5 +1,5 @@
 Spree::Core::Engine.routes.draw do
-  resources :sharedlists do
+  resources :shared_lists do
     member do
       get :share
       post :send_email

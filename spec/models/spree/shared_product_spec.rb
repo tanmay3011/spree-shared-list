@@ -4,7 +4,7 @@ RSpec.describe Spree::SharedProduct, type: :model do
 
   describe 'Associations' do
     it { is_expected.to belong_to(:variant) }
-    it { is_expected.to belong_to(:sharedlist) }
+    it { is_expected.to belong_to(:shared_list) }
   end
 
   describe 'Methods' do

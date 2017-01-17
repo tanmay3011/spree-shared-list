@@ -1,36 +1,36 @@
 require 'spec_helper'
 
 RSpec.describe Spree::SharedProductsController, type: :controller do
-  let(:sharedlist) { create(:sharedlist) }
+  let(:shared_list) { create(:shared_list) }
   let(:user) { create(:user) }
   let(:shared_product) { create(:shared_product) }
   before { allow(controller).to receive(:spree_current_user).and_return(user) }
 
   describe 'Action Callbacks' do
-    describe '#load_sharedlist' do
+    describe '#load_shared_list' do
       def send_request params
         spree_post :create, params
       end
 
-      context 'when sharedlist is present' do
-        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+      context 'when shared_list is present' do
+        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
         before do
-          allow(Spree::Sharedlist).to receive(:find_by).and_return(sharedlist)
+          allow(Spree::SharedList).to receive(:find_by).and_return(shared_list)
         end
 
         before { send_request params }
         it { expect(flash[:error]).to be_nil }
       end
 
-      context 'when sharedlist is not present' do
-        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+      context 'when shared_list is not present' do
+        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
         before do
-          allow(Spree::Sharedlist).to receive(:find_by).and_return(nil)
+          allow(Spree::SharedList).to receive(:find_by).and_return(nil)
         end
 
         before { send_request params }
         it { expect(response).to have_http_status 302 }
-        it { expect(flash[:error]).to eq(Spree.t(:sharedlist_not_found)) }
+        it { expect(flash[:error]).to eq(Spree.t(:shared_list_not_found)) }
         it { expect(response).to redirect_to root_path }
       end
     end
@@ -41,9 +41,9 @@ RSpec.describe Spree::SharedProductsController, type: :controller do
       end
 
       context 'when shared product is present' do
-        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
         before do
-          allow(Spree::Sharedlist).to receive(:find_by).and_return(sharedlist)
+          allow(Spree::SharedList).to receive(:find_by).and_return(shared_list)
           allow(Spree::SharedProduct).to receive(:find_by).and_return(shared_product)
         end
 
@@ -53,9 +53,9 @@ RSpec.describe Spree::SharedProductsController, type: :controller do
       end
 
       context 'when shared product is not present' do
-        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
         before do
-          allow(Spree::Sharedlist).to receive(:find_by).and_return(sharedlist)
+          allow(Spree::SharedList).to receive(:find_by).and_return(shared_list)
           allow(Spree::SharedProduct).to receive(:find_by).and_return(nil)
         end
 
@@ -75,29 +75,29 @@ RSpec.describe Spree::SharedProductsController, type: :controller do
         spree_post :create, params
       end
 
-      let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
-      context 'when sharedlist is present' do
+      let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
+      context 'when shared_list is present' do
         context 'when shared product is successfully created' do
           before do
-            allow(Spree::Sharedlist).to receive(:find_by).and_return(sharedlist)
+            allow(Spree::SharedList).to receive(:find_by).and_return(shared_list)
             allow(Spree::SharedProduct).to receive(:new).and_return(shared_product)
           end
           describe 'response' do
             before { send_request params }
             it { expect(response).to have_http_status 302 }
-            it { expect(response).to redirect_to sharedlist_path(sharedlist) }
+            it { expect(response).to redirect_to shared_list_path(shared_list) }
           end
         end
       end
 
-      context 'when sharedlist is not present' do
+      context 'when shared_list is not present' do
         before do
-          allow(Spree::Sharedlist).to receive(:find_by).and_return(nil)
+          allow(Spree::SharedList).to receive(:find_by).and_return(nil)
         end
 
         before { send_request params }
         it { expect(response).to have_http_status 302 }
-        it { expect(flash[:error]).to eq(Spree.t(:sharedlist_not_found)) }
+        it { expect(flash[:error]).to eq(Spree.t(:shared_list_not_found)) }
         it { expect(response).to redirect_to root_path }
       end
     end
@@ -106,12 +106,12 @@ RSpec.describe Spree::SharedProductsController, type: :controller do
       def send_request paras
         spree_patch :update, params
       end
-      let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+      let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
       context 'when shared product is present' do
         context 'When shared product is updated successfully' do
-          let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+          let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
           before do
-            allow(Spree::Sharedlist).to receive(:find_by).and_return(sharedlist)
+            allow(Spree::SharedList).to receive(:find_by).and_return(shared_list)
             allow(Spree::SharedProduct).to receive(:find_by).and_return(shared_product)
           end
 
@@ -122,9 +122,9 @@ RSpec.describe Spree::SharedProductsController, type: :controller do
       end
 
       context 'when shared product is not present' do
-        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
         before do
-          allow(Spree::Sharedlist).to receive(:find_by).and_return(sharedlist)
+          allow(Spree::SharedList).to receive(:find_by).and_return(shared_list)
           allow(Spree::SharedProduct).to receive(:find_by).and_return(nil)
         end
 
@@ -139,12 +139,12 @@ RSpec.describe Spree::SharedProductsController, type: :controller do
       def send_request paras
         spree_delete :destroy, params
       end
-      let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+      let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
       context 'when shared product is present' do
         context 'when shared product is successfully deleted' do
-          let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+          let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
           before do
-            allow(Spree::Sharedlist).to receive(:find_by).and_return(sharedlist)
+            allow(Spree::SharedList).to receive(:find_by).and_return(shared_list)
             allow(Spree::SharedProduct).to receive(:find_by).and_return(shared_product)
           end
 
@@ -155,9 +155,9 @@ RSpec.describe Spree::SharedProductsController, type: :controller do
       end
 
       context 'when shared product is not present' do
-        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, sharedlist_id: sharedlist.id } } }
+        let(:params) { { id: shared_product.id, shared_product: { id: shared_product.id, shared_list_id: shared_list.id } } }
         before do
-          allow(Spree::Sharedlist).to receive(:find_by).and_return(sharedlist)
+          allow(Spree::SharedList).to receive(:find_by).and_return(shared_list)
           allow(Spree::SharedProduct).to receive(:find_by).and_return(nil)
         end
 
