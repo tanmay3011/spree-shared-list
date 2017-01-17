@@ -291,7 +291,7 @@ RSpec.describe Spree::SharedlistsController, type: :controller do
       end
     end
 
-    describe 'POST destroy' do
+    describe 'DELETE destroy' do
       def send_request paras
         spree_delete :destroy, params
       end

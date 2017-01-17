@@ -14,7 +14,7 @@ en:
     move: "Move"
     move_to_another_sharedlist: "Move to another sharedlist"
     my_sharedlists: "My sharedlists"
-    remove_from_sharedlist: "Remove from sharedlist"
+    remove_from_sharedlist: "Remove"
     sharedlist_actions: "Actions"
     your_sharedlist_is_empty: "Your sharedlist is empty"
     item_added_to_sharedlist: "Item added to sharedlist"

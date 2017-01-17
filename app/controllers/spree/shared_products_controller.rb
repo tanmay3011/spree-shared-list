@@ -49,7 +49,7 @@ class Spree::SharedProductsController < Spree::StoreController
   end
 
   def load_shared_product
-    @shared_product = Spree::SharedProduct.find(params[:id])
+    @shared_product = Spree::SharedProduct.find_by(id: params[:id])
     unless @shared_product
       flash[:error] = Spree.t(:shared_product_not_found)
       redirect_to :root
