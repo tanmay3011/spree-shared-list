@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_shared_list'
   s.version     = '3.1.3'
-  s.summary     = 'Spree Shared List'
-  s.description = 'Spree Shared List extension'
+  s.summary     = 'Adds SharedList functionality to an app'
+  s.description = 'A registered user can create multiple sharedlists and share them with other registered users'
   s.required_ruby_version = '>= 2.1.0'
 
   s.author    = ['Akshat']

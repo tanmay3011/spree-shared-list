@@ -1,7 +1,7 @@
 SpreeSharedList
 ===============
 
-This extension provides the user with the ability to create multiple shared lists. A user can add multiple products to the list for reference purposes and then check them out, either individually or the whole list at once, at his leisure. He can also share this list with his friends via email.
+SpreeSharedList extension provides a user with the ability to create multiple shared lists. A user can add multiple products to a list and then check them out, either individually or the whole list at once. He can also share this list with others registered users via email.
 
 ## Installation
 
@@ -40,7 +40,7 @@ When testing your applications integration with this extension you may use it's 
 Simply add this require statement to your spec_helper:
 
 ```ruby
-require 'spree-shared-list/factories'
+require 'spree_shared_list/factories'
 ```
 
 
